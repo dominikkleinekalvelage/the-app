@@ -1,0 +1,124 @@
+## DevOps Introduction:
+- Waterfall:
+	- Customer Requirement -> Customer Prod = 6 month
+	- Much speculation
+- Agile:
+	- Multiple iterations (analysis, dev, test in parallel) during dev time (1-4 week sprints), then hard cut handover to Ops
+	- Less speculation
+- Still probems:
+	- Dev doesn't know what happens in prod
+	- Dev has no prod server access
+	- Dev focus on Delivery vs. Ops focus on stability and reliability, customer focus on changing demand
+	- Physical infrastructure planning takes 6 month, slow
+	- Ops is not involved upfront: More hardware needed etc?
+- DevOps:
+	- 200x more frequent deployments (e.g. every hour)
+	- 2555x shorter lead time between requirement and prod
+	- DevOps is 80% culture problem, only 20% tool problem 
+	- Culture shift: People have to talk to each other
+	- 20% of time in agile setup should be reserved for internal improvements (tools/infrastructure/code cleanup/tests/xxx)
+	- Feedback loop from Ops to Dev
+	- No separated silos (Dev, Test, Ops), but all are thinking about the other topics and working together
+
+
+
+## DevOps topics:
+- Automation:
+	- As much automated as possible (means also infrastructure (Ops) as code/config)
+	- Everything (Dev, Package, Test, Deploy) should happen fast and automated (minutes/hours)
+	- Automation reduces lead time, reduces human error, reduces documentation, provides trackability of changes
+	- Automated Deployment: Keep prod system/constraints in mind when designing package/scripts. No special dev/tests scripts
+- Integrate Security during Dev time ("SecDevOps"), security checks after every commit, not only before/after production
+- Create monitors/dashboards (from beginning/Dev time) to visualize system status/feature usage/deploy events/error logs
+- Infrastructure as Code (IAC)
+	- Ops related topic
+	- Setup your environment (servers) via config files (e.g. YAML)
+	- Infrastructure under SCM
+	- Infrastructure (config files) can be developed, tested, played around with
+	- Immutable infrastructure: Once installed it is not changed, it is rather rebuild from scratch
+- Blue/green deployments: Duplicate infrastructure, one is updated and proxy in front is switched to new infrastructure
+- A/B testing (e.g. for Webapps): Software (e.g. UI) is only rolled out to some servers/users. Proxy will distribute some traffic to these
+- Canary Releases: Release (release candidate 1, 2, 3, ..) , which might still contain bugs, tested in prod using e.g. A/B testing
+- Simian Army:
+	- Chaos Monkey: Randomly kill services in prod to check that software/infrastructure/monitors/people/processes react correctly
+	- More Monkeys to check correctness of infrastructure: Latency M., Doctor M., Janitor M., 10-18 M. Chaos Gorilla, Chaos Kong
+- Blameless post mortem: Root cause analysis, facts, actions
+
+
+
+## Tools:
+- GitHub/GitLab:
+	- git as source code mgmt (SCM), bug tracking, features around
+	- "Project" means kind of epic/big feature, contians tasks/items, can be displayed in Kanban board style
+	- Can actively (via Webhooks) trigger Jenkins to tell, that a commit happened and pipeline should start
+- Jenkins:
+	- Test automation, triggered via SCM change, execute ant/maven/script
+	- Pipeline: Stream of projects, which are dependant on each other
+	- Pipeline usually not watched at in Jenkins, but Pipeline distributes info to other tools/git
+- Gradle:
+	- Build automation, wrapper/Extension to ant/maven
+- JUnit:
+	- Unit tests via Java, suites
+- Geb/HPE UFT:
+	- Web testing, wrapper for Selenium, test web appearance and web interaction
+- Slack:
+	- Chat tool for team, integrates with bots (get info from other tools and trigger actions from chat)
+- HUBOT:
+	- Bot for Slack, runs scripts/commands, posts chat messages
+- Nagios:
+	- Monitoring network/hosts/services (e.g. via remote agent), graphic visualization
+- ICINGA:
+	- Extension of Nagios, DB connectors, Web2.0 interface
+- Elastic(search):
+	- Big data, log analysis, graphic visualization (via Kibana)
+	- ELK (Elastic search, Logstash, Kibana) stack
+- Grafana/Prometheus:
+	- Monitoring health/performance of system/host/service (on low level like temperature, # of invocations)
+- Vagrant:
+	- Orchestrate/create machines/VMs e.g. on Azure/VirtualBox/etc.
+- Ansible/Chef/Puppet/Salt:
+	- Infrastructure as Code (IAC) tools
+	- Use Configuration Declaration Language (CDL): Describe desired end-state, tool automatically enforces this state
+	- Ansible: easy, but not powerful. Chef/Puppet: Powerful, many libraries. Salt: Less used.
+	- Ansible: Only installation. Puppet: Installation and Maintenance
+
+
+
+## Takeaways/Ideas:
+- Automate everything
+	- Cloud server restart. Status check. Service starts after reboot.
+	- Build deployment package, copy to Sharepoint, commit to git, create git label
+	- Extract and install deployment package in HPE cloud (scripts should also be valid for Prod, deliver these!) 
+- From OneNote to Git-Wiki
+- Wiki:
+	- Deployment-Package-List (replaces Wochenbericht)
+		- Past deployments
+		- Next deployments
+		- Release Notes (For Next Package)
+	- SME (subject matter expert) list visible to the customer/Martin to be able to correctly address problems, e.g.
+		- WebSphere -> Steffen
+		- PRIMA+ -> Dominik
+	- Known bugs/problems and how to react (from test team, from AO Kosice, from AO Bamberg
+	- More structured post mortems after problems/bugs: Documentation of root cause/fix
+- Every feature neeeds a test (documented also in Userstory?)
+- Build monitor for different activities in the software
+	- Number of invocation of new feature X
+- Use GEB (wrapper for Selenium) for GUI testing
+- Use Slack (or MS Teams!) for central chatroom (with HUBOG?)
+	- Integrate Test results from Jenkins
+	- Integrate Metadata Monitor
+- README.md in folders will be displayed on GitHub Website
+- Team TODO List in Git "Projects" or similar to avoid local TODO-textfiles etc
+- User acceptance testing (by russion testers) in Warroom together with Devs to test new UI?
+- Can we control HPE Cloud servers via Ansible (infrastrucure as code)?
+- https://github.com/acaudwell/Gource/wiki/Controls
+- Less mail, more centralized communication (Slack/MS Teams/Mattermost). Least-mails-challenge
+
+
+
+## Critical points:
+- Central git repository needed, which contains software itself (HPE), tests (T-Russia), infra-as-code (AO Kosice & Bamberg)
+- Full transparency regarding open point/problems (via git, Slack), failed tests (via Jenkins->git)
+- Telekom gets access to full source code (via central git)
+- All servers (dev, test, prod) should be the same, so scripts can be generic (so dev and test are more prod-like/realistic)
+ 
