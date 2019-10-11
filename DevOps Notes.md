@@ -6,8 +6,7 @@
 	- Multiple iterations (analysis, dev, test in parallel) during dev time (1-4 week sprints), then hard cut handover to Ops
 	- Less speculation
 - Still probems:
-	- Dev doesn't know what happens in prod
-	- Dev has no prod server access
+	- Dev doesn't know what happens in prod, Dev has no prod server access
 	- Dev focus on Delivery vs. Ops focus on stability and reliability, customer focus on changing demand
 	- Physical infrastructure planning takes 6 month, slow
 	- Ops is not involved upfront: More hardware needed etc?
@@ -18,9 +17,6 @@
 	- Culture shift: People have to talk to each other
 	- 20% of time in agile setup should be reserved for internal improvements (tools/infrastructure/code cleanup/tests/xxx)
 	- Feedback loop from Ops to Dev
-	- No separated silos (Dev, Test, Ops), but all are thinking about the other topics and working together
-
-
 
 ## DevOps topics:
 - Automation:
@@ -43,8 +39,17 @@
 	- Chaos Monkey: Randomly kill services in prod to check that software/infrastructure/monitors/people/processes react correctly
 	- More Monkeys to check correctness of infrastructure: Latency M., Doctor M., Janitor M., 10-18 M. Chaos Gorilla, Chaos Kong
 - Blameless post mortem: Root cause analysis, facts, actions
-
-
+- Organizational structure:
+	- A reorg may facilitate DevOps adoption, though mindset shift still needs to happen
+	- Teams should be self organized (tasks, priorities, even budget)
+	- No separated silos (Dev, Test, Ops), but all are thinking about the other topics and working together
+	- Dev teams and Ops teams have to collaborate and merge on certain topics. Not: Dev does DevOps, but Ops not, etc.
+- Books (all available on Safari books, free for HPE employees):
+	- https://www.oreilly.com/library/view/a-practical-approach/9780132980982/ (HP authors, LaserJet transformation)
+	- https://www.oreilly.com/library/view/the-devops-handbook/9781457191381/ (use like a reference to look things up)
+	- https://www.oreilly.com/library/view/the-phoenix-project/9781457191350/ (DevOps like a novel/story)
+	- https://www.amazon.de/Continuous-Delivery-Deployment-Automation-Addison-Wesley-ebook/dp/B003YMNVC0 (big comprehensive book, read in small chunks)
+	- https://www.amazon.de/Leading-Transformation-Applying-Principles-English-ebook/dp/B07B43BLLB/ (for managers)
 
 ## Tools:
 - GitHub/GitLab:
@@ -82,8 +87,6 @@
 	- Ansible: easy, but not powerful. Chef/Puppet: Powerful, many libraries. Salt: Less used.
 	- Ansible: Only installation. Puppet: Installation and Maintenance
 
-
-
 ## Takeaways/Ideas:
 - Automate everything
 	- Cloud server restart. Status check. Service starts after reboot.
@@ -113,8 +116,8 @@
 - Can we control HPE Cloud servers via Ansible (infrastrucure as code)?
 - https://github.com/acaudwell/Gource/wiki/Controls
 - Less mail, more centralized communication (Slack/MS Teams/Mattermost). Least-mails-challenge
-
-
+- Making work visible:
+	- Track "interruptions"/tasks somewhere to show things we are doing parallel to user stories
 
 ## Critical points:
 - Central git repository needed, which contains software itself (HPE), tests (T-Russia), infra-as-code (AO Kosice & Bamberg)
