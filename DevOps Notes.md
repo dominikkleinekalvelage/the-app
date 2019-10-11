@@ -13,7 +13,7 @@
 - DevOps:
 	- 200x more frequent deployments (e.g. every hour)
 	- 2555x shorter lead time between requirement and prod
-	- DevOps is 80% culture problem, only 20% tool problem 
+	- DevOps is 80% culture problem (Ownership, Autonomy, Business Outcome), only 20% tool problem (Pipelines)
 	- Culture shift: People have to talk to each other
 	- 20% of time in agile setup should be reserved for internal improvements (tools/infrastructure/code cleanup/tests/xxx)
 	- Feedback loop from Ops to Dev
@@ -38,12 +38,17 @@
 - Simian Army:
 	- Chaos Monkey: Randomly kill services in prod to check that software/infrastructure/monitors/people/processes react correctly
 	- More Monkeys to check correctness of infrastructure: Latency M., Doctor M., Janitor M., 10-18 M. Chaos Gorilla, Chaos Kong
-- Blameless post mortem: Root cause analysis, facts, actions
+- Blameless post mortem: Root cause analysis, facts, actions, not finding/pointing guilty team member
 - Organizational structure:
 	- A reorg may facilitate DevOps adoption, though mindset shift still needs to happen
 	- Teams should be self organized (tasks, priorities, even budget)
 	- No separated silos (Dev, Test, Ops), but all are thinking about the other topics and working together
 	- Dev teams and Ops teams have to collaborate and merge on certain topics. Not: Dev does DevOps, but Ops not, etc.
+- Kaizen:
+	- Select the thing that currently brings the most value and tackle this for one month
+	- E.g. bug reduction, e.g. test improvement, e.g. communication tools, ... 
+	- Constantly work on the thing (like every Friday)
+	- Then check/reassess success
 - Books (all available on Safari books, free for HPE employees):
 	- https://www.oreilly.com/library/view/a-practical-approach/9780132980982/ (HP authors, LaserJet transformation)
 	- https://www.oreilly.com/library/view/the-devops-handbook/9781457191381/ (use like a reference to look things up)
